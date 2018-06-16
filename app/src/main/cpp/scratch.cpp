@@ -229,6 +229,7 @@ Java_io_multy_util_NativeDataHelper_makeAccountAddress(JNIEnv *env, jobject obj,
     HDAccountPtr hdAccount;
     HANDLE_ERROR(make_hd_account(rootKey.get(),
                                  BlockchainType{(Blockchain) blockchain, (size_t) type},
+                                 0,
                                  walletIndex,
                                  reset_sp(hdAccount)));
 
@@ -262,6 +263,7 @@ Java_io_multy_util_NativeDataHelper_getMyPrivateKey(JNIEnv *env, jclass type_, j
 
     HDAccountPtr hdAccount;
     HANDLE_ERROR(make_hd_account(rootKey.get(), BlockchainType{(Blockchain) blockchain, (size_t) netType},
+                                 0,
                                  walletIndex,
                                  reset_sp(hdAccount)));
 
@@ -323,6 +325,7 @@ Java_io_multy_util_NativeDataHelper_makeTransaction(JNIEnv *jniEnv, jobject obj,
     HANDLE_ERROR(
             make_hd_account(rootKey.get(),
                             BlockchainType{BLOCKCHAIN_BITCOIN, (size_t) jNetworkId},
+                            0,
                             jWalletIndex, reset_sp(hdAccount)));
 
     AccountPtr baseAccount;
@@ -625,6 +628,7 @@ Java_io_multy_util_NativeDataHelper_makeTransactionETH(JNIEnv *env, jclass type,
         HANDLE_ERROR(make_hd_account(rootKey.get(),
                                      BlockchainType{(Blockchain) jChainId,
                                                     (size_t) jNetType},
+                                     0,
                                      jWalletIndex,
                                      reset_sp(hdAccount)));
 

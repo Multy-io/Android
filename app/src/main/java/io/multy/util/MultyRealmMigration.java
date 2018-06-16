@@ -8,6 +8,7 @@ package io.multy.util;
 
 import io.multy.model.entities.wallet.EthWallet;
 import io.multy.model.entities.wallet.RecentAddress;
+import io.multy.model.entities.wallet.Wallet;
 import io.multy.model.entities.wallet.WalletAddress;
 import io.realm.DynamicRealm;
 import io.realm.DynamicRealmObject;
@@ -30,6 +31,9 @@ public class MultyRealmMigration implements io.realm.RealmMigration {
             final RealmObjectSchema addressSchema = schema.get(WalletAddress.class.getSimpleName());
             addressSchema.removeField("amount");
             addressSchema.addField("amount", String.class);
+        } else if (oldVersion == 3) {
+            final RealmObjectSchema walletSchema = schema.get(Wallet.class.getSimpleName());
+            walletSchema.addField("syncing", Boolean.class);
         }
     }
 

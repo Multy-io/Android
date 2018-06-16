@@ -53,6 +53,7 @@ import io.multy.ui.fragments.BaseFragment;
 import io.multy.ui.fragments.dialogs.AddressActionsDialogFragment;
 import io.multy.util.Constants;
 import io.multy.util.CryptoFormatUtils;
+import io.multy.util.NumberFormatter;
 import io.multy.util.analytics.Analytics;
 import io.multy.util.analytics.AnalyticsConstants;
 import io.multy.viewmodels.WalletViewModel;
@@ -282,7 +283,7 @@ public class EthAssetInfoFragment extends BaseFragment implements AppBarLayout.O
             final String allWeiString = allWei.toString();
 
             textBalanceFiat.setText(CryptoFormatUtils.weiToUsd(allWei));
-            textBalanceOriginal.setText(String.format("%s", CryptoFormatUtils.weiToEth(allWeiString)));
+            textBalanceOriginal.setText(NumberFormatter.getInstance().format(CryptoFormatUtils.weiToEth(allWeiString)));
         } else {
             hideAvailableAmount();
             textBalanceFiat.setText(wallet.getFiatBalanceLabel());

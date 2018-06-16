@@ -36,7 +36,6 @@ import io.multy.viewmodels.WalletViewModel;
 public class AssetActivity extends BaseActivity {
 
     private boolean isFirstFragmentCreation;
-
     private WalletViewModel viewModel;
 
     @Override

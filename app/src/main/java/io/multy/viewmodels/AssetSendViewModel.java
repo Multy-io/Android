@@ -214,7 +214,7 @@ public class AssetSendViewModel extends BaseViewModel {
 //            Log.i("wise", getWallet().getId() + " " + getWallet().getNetworkId() + " " + amount + " " + getFee().getAmount() + " " + getDonationSatoshi() + " " + isPayForCommission);
 
             byte[] tx = NativeDataHelper.makeTransactionETH(RealmManager.getSettingsDao().getSeed().getSeed(), getWallet().getIndex(), 0, wallet.getValue().getCurrencyId(), wallet.getValue().getNetworkId(),
-                    getWallet().getActiveAddress().getAmountString(), signAmount/*CryptoFormatUtils.ethToWei(String.valueOf(amount))*/, getReceiverAddress().getValue().substring(2), "21000", String.valueOf(fee.getValue().getAmount()), getWallet().getEthWallet().getNonce());
+                    getWallet().getActiveAddress().getAmountString(), signAmount/*CryptoFormatUtils.ethToWei(String.valueOf(amount))*/, getReceiverAddress().getValue(), "21000", String.valueOf(fee.getValue().getAmount()), getWallet().getEthWallet().getNonce());
             transaction.setValue(byteArrayToHex(tx));
         } catch (JniException e) {
             errorMessage.setValue("Entered sum is invalid.");

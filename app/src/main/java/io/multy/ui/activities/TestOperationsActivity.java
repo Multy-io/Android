@@ -392,7 +392,7 @@ public class TestOperationsActivity extends BaseActivity {
             case ETH:
                 transaction = NativeDataHelper.makeTransactionETH(seed, wallet.getIndex(), 0, wallet.getCurrencyId(),
                         wallet.getNetworkId(), String.valueOf(wallet.getActiveAddress().getAmount()), receiver.getAmount(),
-                        receiver.getAddress().substring(2), "21000", "1000000000", wallet.getEthWallet().getNonce());
+                        receiver.getAddress(), "21000", "1000000000", wallet.getEthWallet().getNonce());
                 isHd = false;
                 break;
             default:

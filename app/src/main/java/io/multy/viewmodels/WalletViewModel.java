@@ -103,9 +103,7 @@ public class WalletViewModel extends BaseViewModel {
     }
 
     public MutableLiveData<Wallet> getWalletLive() {
-        if (!wallet.getValue().isValid() && walletId != -1) {
-            wallet.setValue(getWallet(walletId));
-        }
+        actualizeWallet();
         return wallet;
     }
 
@@ -246,14 +244,21 @@ public class WalletViewModel extends BaseViewModel {
     }
 
     public int getChainId() {
+        actualizeWallet();
         if (wallet.getValue() != null) {
             return wallet.getValue().getCurrencyId();
         }
         return 0;
     }
 
+    private void actualizeWallet() {
+        if ((wallet.getValue() == null || !wallet.getValue().isValid()) && walletId != -1) {
+            wallet.setValue(getWallet(walletId));
+        }
+    }
+
     public void shareAddress(Activity activity) {
-        share(activity, wallet.getValue().getActiveAddress().getAddress());
+        share(activity, getWalletLive().getValue().getActiveAddress().getAddress());
     }
 
     public void share(Activity activity, String stringToShare) {
@@ -271,7 +276,7 @@ public class WalletViewModel extends BaseViewModel {
     }
 
     public void copyToClipboardAddress(Activity activity) {
-        copyToClipboard(activity, wallet.getValue().getActiveAddress().getAddress());
+        copyToClipboard(activity, getWalletLive().getValue().getActiveAddress().getAddress());
     }
 
     public void copyToClipboard(Activity activity, String stringToShare) {

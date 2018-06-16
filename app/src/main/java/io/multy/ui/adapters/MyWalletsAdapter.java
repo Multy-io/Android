@@ -24,7 +24,7 @@ import io.multy.storage.RealmManager;
 
 public class MyWalletsAdapter extends RecyclerView.Adapter<MyWalletsAdapter.Holder> {
 
-//    private final static DecimalFormat format = new DecimalFormat("#.##");
+    //    private final static DecimalFormat format = new DecimalFormat("#.##");
     private List<Wallet> data;
     private CurrenciesRate rates;
     private OnWalletClickListener listener;
@@ -60,6 +60,7 @@ public class MyWalletsAdapter extends RecyclerView.Adapter<MyWalletsAdapter.Hold
         }
         holder.imageChain.setImageResource(wallet.getIconResourceId());
         holder.itemView.setOnClickListener(view -> listener.onWalletClick(wallet));
+        holder.resync.setVisibility(wallet.isSyncing() ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -108,6 +109,8 @@ public class MyWalletsAdapter extends RecyclerView.Adapter<MyWalletsAdapter.Hold
         ImageView imageChain;
         @BindView(R.id.image_pending)
         ImageView imagePending;
+        @BindView(R.id.text_resync)
+        TextView resync;
 
         Holder(View itemView) {
             super(itemView);

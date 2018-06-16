@@ -47,6 +47,8 @@ public class Wallet extends RealmObject implements WalletBalanceInterface {
     private boolean pending;
     @SerializedName("address")
     private String creationAddress;
+    @SerializedName("issyncing")
+    private boolean syncing = false;
 
     private int fiatId; //id of chosen fiat currency for this walelt
 
@@ -115,7 +117,7 @@ public class Wallet extends RealmObject implements WalletBalanceInterface {
             case BTC:
                 return NumberFormatter.getInstance().format(getBtcDoubleValue());
             case ETH:
-                return NumberFormatter.getEthInstance().format(getEthValue());
+                return NumberFormatter.getInstance().format(getEthValue());
             default:
                 return "unsupported";
         }
@@ -400,6 +402,14 @@ public class Wallet extends RealmObject implements WalletBalanceInterface {
 
     public void setAvailableBalance(String availableBalance) {
         this.availableBalance = availableBalance;
+    }
+
+    public boolean isSyncing() {
+        return syncing;
+    }
+
+    public void setSyncing(boolean syncing) {
+        this.syncing = syncing;
     }
 
     @Nullable

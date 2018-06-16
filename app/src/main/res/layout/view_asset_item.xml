@@ -104,7 +104,20 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_history_pending"
             android:visibility="gone"
-            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/image_chevron"
+            app:layout_constraintRight_toLeftOf="@id/image_chevron"
+            app:layout_constraintTop_toTopOf="@id/image_chevron" />
+
+        <TextView
+            android:id="@+id/text_resync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.2"
+            android:text="@string/resync"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:visibility="gone"
+            android:textColor="@color/text_grey"
             app:layout_constraintBottom_toBottomOf="@id/image_chevron"
             app:layout_constraintRight_toLeftOf="@id/image_chevron"
             app:layout_constraintTop_toTopOf="@id/image_chevron" />

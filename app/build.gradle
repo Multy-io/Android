@@ -9,6 +9,11 @@ apply plugin: 'realm-android'
 apply from: 'constants.gradle'
 apply from: 'scripts.gradle'
 
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    maven {url 'https://maven.google.com'} // Google's Maven repository}
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -121,8 +126,8 @@ dependencies {
     implementation 'com.github.tozny:java-aes-crypto:1.1.0'
     implementation 'com.github.khirr:Android-Foreground-Detection:1.0.1'
     implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'pl.bclogic:pulsator4droid:1.0.3'
-    implementation 'com.android.support:support-dynamic-animation:27.1.1'
+//    implementation 'pl.bclogic:pulsator4droid:1.0.3'
+//    implementation 'com.android.support:support-dynamic-animation:27.1.1'
     implementation 'com.airbnb.android:lottie:2.5.4'
 }
 

@@ -1,4 +1,4 @@
-# Multy-android
+# Multy-android (moved to https://github.com/Multy-io/Multy-android)
 
 Multi cryptocurrency and assets open-source wallet
 

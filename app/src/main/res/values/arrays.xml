@@ -28,17 +28,20 @@
         <item>BTC Testnet</item>
         <item>ETH</item>
         <item>ETH Testnet</item>
+        <item>EOS Testnet</item>
     </string-array>
     <string-array name="available_chain_name">
         <item>Bitcoin</item>
         <item>Bitcoin</item>
         <item>Ethereum</item>
         <item>Ethereum</item>
+        <item>EOS</item>
     </string-array>
     <array name="available_chain_image_ids">
         <item>@drawable/ic_btk_logo</item>
         <item>@drawable/ic_chain_btc_test</item>
         <item>@drawable/chain_eth</item>
+        <item>@drawable/ic_chain_eth_test</item>
         <item>@drawable/ic_chain_eth_test</item>
     </array>
     <integer-array name="available_chain_net_types">
@@ -46,12 +49,14 @@
         <item>1</item>
         <item>1</item>
         <item>4</item>
+        <item>1</item>
     </integer-array>
     <integer-array name="available_chain_ids">
         <item>0</item>
         <item>0</item>
         <item>60</item>
         <item>60</item>
+        <item>194</item>
     </integer-array>
     <string-array name="soon_chain_abbrev">
         <item>ETH</item>

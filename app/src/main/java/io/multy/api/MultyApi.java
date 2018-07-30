@@ -178,5 +178,10 @@ public enum MultyApi implements MultyApiInterface {
         public Call<TestWalletResponse> testWalletVerbose() {
             return api.testWalletVerbose();
         }
-    }
+
+        @Override
+        public Call<ResponseBody> getAccountPrice(Object body) {
+            return api.getAccountPrice(body);
+        }
+    };
 }

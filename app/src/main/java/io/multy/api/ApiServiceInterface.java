@@ -84,4 +84,7 @@ public interface ApiServiceInterface {
 
     @GET("api/v1/wallets/verbose")
     Call<TestWalletResponse> testWalletVerbose();
+
+    @POST("api/v1/account/price")
+    Call<ResponseBody> getAccountPrice(@Body Object body);
 }

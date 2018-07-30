@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2018 Idealnaya rabota LLC
+  ~ Licensed under Multy.io license.
+  ~ See LICENSE for details
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_name_free" android:state_enabled="true" />
+    <item android:drawable="@drawable/ic_name_taken" android:state_enabled="false" />
+    <item android:drawable="@drawable/ic_name_free" />
+</selector>
+

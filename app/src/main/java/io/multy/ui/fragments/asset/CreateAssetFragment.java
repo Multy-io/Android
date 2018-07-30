@@ -76,19 +76,27 @@ public class CreateAssetFragment extends BaseFragment {
 
         View v = inflater.inflate(R.layout.view_assets_action_add, container, false);
         ButterKnife.bind(this, v);
-        initialize();
-        subscribeToCurrencyUpdate();
-        Analytics.getInstance(getActivity()).logCreateWalletLaunch();
+        if (chainId == NativeDataHelper.Blockchain.EOS.getValue() && getFragmentManager() != null) {
+            getActivity().getIntent().putExtra(Constants.CHAIN_ID, chainId);
+            CreatePayableAssetFragment fragment = CreatePayableAssetFragment.getInstance();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container_main, fragment, CreatePayableAssetFragment.TAG)
+                    .commit();
+        } else {
+            initialize();
+            subscribeToCurrencyUpdate();
+            Analytics.getInstance(getActivity()).logCreateWalletLaunch();
 
-        editTextWalletName.requestFocus();
-        editTextWalletName.postDelayed(() -> {
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (imm.isActive()) {
-                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-            }
+            editTextWalletName.requestFocus();
+            editTextWalletName.postDelayed(() -> {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm.isActive()) {
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                }
 
-            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
-        }, 100);
+                imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+            }, 100);
+        }
         return v;
     }
 

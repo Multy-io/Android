@@ -252,4 +252,10 @@
     <string name="join_multisig">Приєднатися до MultiSig</string>
     <string name="invalid_entered_sum">Введена невірна сума</string>
     <string name="no_available_donation">Немає доступних засобів для пожертвування.</string>
+    <string name="wallet_parameters">Wallet parameters</string>
+    <string name="select_payment_wallet">You have to select wallet for payment creating EOS wallet transaction. Be sure that you have needed sum of funds.</string>
+    <string name="name_is_free">Name is free</string>
+    <string name="name_is_taken">Name is taken</string>
+    <string name="net">NET</string>
+    <string name="create_for_eth">Create for %s ETH</string>
 </resources>

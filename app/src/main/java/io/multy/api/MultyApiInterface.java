@@ -60,4 +60,5 @@ public interface MultyApiInterface {
 
     Call<TestWalletResponse> testWalletVerbose();
 
+    Call<ResponseBody> getAccountPrice(Object body);
 }

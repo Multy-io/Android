@@ -30,7 +30,8 @@ public class NativeDataHelper {
         //        BTC(0x80000000),
 //        ETH(0x8000003c);
         BTC(0),
-        ETH(60);
+        ETH(60),
+        EOS(194);
 
         private final int value;
 

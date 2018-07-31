@@ -433,6 +433,73 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/blue_light</item>
+    </style>
+
+    <style name="CreateWalletButtonTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue_light</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+
+    <style name="CreateWalletButtonText">
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/text_main_dark</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="CreateWalletButton">
+        <item name="android:background">@drawable/selector_white</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="CreateWalletSubtitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue_light</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="CreateWalletNotification">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CreateWalletNotificationButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/blue_light</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:gravity">bottom|center_horizontal</item>
     </style>
 
 </resources>

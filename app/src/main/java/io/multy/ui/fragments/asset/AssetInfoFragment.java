@@ -428,6 +428,7 @@ public class AssetInfoFragment extends BaseFragment implements AppBarLayout.OnOf
         startActivity(new Intent(getActivity(), SeedActivity.class));
     }
 
+    //todo need to move in a common activity
     public static class SharingBroadcastReceiver extends BroadcastReceiver {
 
         public SharingBroadcastReceiver() {

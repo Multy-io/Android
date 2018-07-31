@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2018 Idealnaya rabota LLC
+  ~ Licensed under Multy.io license.
+  ~ See LICENSE for details
+  -->
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="10sp"
+        android:paddingLeft="16dp"
+        android:text="@string/create_wallet"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/button_cancel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/button_cancel"
+        app:layout_constraintLeft_toRightOf="@id/text_title"
+        android:text="@string/cancel"
+        android:gravity="center"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:textSize="16sp"
+        android:background="?android:attr/selectableItemBackground"
+        android:textColor="@color/text_main_dark"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp" />
+
+    <View
+        android:id="@+id/divider_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
+        style="@style/Divider" />
+
+    <android.support.v4.widget.NestedScrollView
+        app:layout_constraintTop_toBottomOf="@id/divider_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_status"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:background="@color/white"
+                android:drawablePadding="8dp"
+                android:drawableRight="@drawable/selector_name_status_drawable"
+                android:enabled="true"
+                android:gravity="right|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="3sp"
+                android:paddingRight="16dp"
+                android:textColor="@drawable/selector_name_status_color"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/name_is_taken" />
+
+            <TextView
+                android:id="@+id/text_name_title"
+                android:text="@string/wallet_name"
+                app:layout_constraintBottom_toTopOf="@id/edit_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text_status"
+                app:layout_constraintVertical_chainStyle="packed"
+                style="@style/CreateWalletButtonTitle" />
+
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@null"
+                android:digits="12345abcdefghijklmnopqrstuvwxyz"
+                android:inputType="none|text"
+                android:lineSpacingExtra="6sp"
+                android:lines="1"
+                android:maxLength="12"
+                android:maxLines="1"
+                android:textColor="@color/text_main_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/text_status"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_name_title"
+                tools:text="Some wallet name" />
+
+            <View
+                android:id="@+id/divider_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/text_status"
+                android:layout_marginLeft="16dp"
+                style="@style/Divider" />
+
+            <View
+                android:id="@+id/button_chain"
+                app:srcCompat="@drawable/ic_chevron"
+                app:layout_constraintTop_toBottomOf="@id/divider_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/CreateWalletButton" />
+
+            <TextView
+                android:id="@+id/text_chain_title"
+                style="@style/CreateWalletButtonTitle"
+                android:text="@string/chain"
+                app:layout_constraintBottom_toTopOf="@id/text_chain"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_name"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_chain"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_chain_title"
+                app:layout_constraintBottom_toBottomOf="@id/button_chain"
+                tools:text="EOS ∙ EOS"
+                style="@style/CreateWalletButtonText" />
+
+            <ImageView
+                app:layout_constraintRight_toRightOf="@id/button_chain"
+                app:layout_constraintTop_toTopOf="@id/button_chain"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/button_chain"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/button_chain"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/divider_chain" />
+
+            <View
+                android:id="@+id/button_fiat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_chain"
+                style="@style/CreateWalletButton" />
+
+            <TextView
+                android:id="@+id/button_fiat_title"
+                style="@style/CreateWalletButtonTitle"
+                android:text="@string/currency_to_convert"
+                app:layout_constraintBottom_toTopOf="@id/text_fiat"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_fiat"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_fiat"
+                app:layout_constraintBottom_toBottomOf="@id/button_fiat"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_fiat_title"
+                android:text="@string/usd"
+                style="@style/CreateWalletButtonText" />
+
+            <ImageView
+                app:layout_constraintRight_toRightOf="@id/button_fiat"
+                app:layout_constraintTop_toTopOf="@id/button_fiat"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/button_fiat"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/button_fiat"
+                android:id="@+id/divider_fiat" />
+
+            <TextView
+                android:id="@+id/text_parameters"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_fiat"
+                android:text="@string/wallet_parameters"
+                style="@style/CreateWalletSubtitle" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/text_parameters"
+                android:id="@+id/divider_params" />
+
+            <View
+                android:id="@+id/button_ram"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_params"
+                style="@style/CreateWalletButton" />
+
+            <TextView
+                android:id="@+id/text_ram_title"
+                style="@style/CreateWalletButtonTitle"
+                android:text="RAM"
+                app:layout_constraintBottom_toTopOf="@id/text_ram"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_ram"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_ram"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_ram_title"
+                app:layout_constraintBottom_toBottomOf="@id/button_ram"
+                tools:text="150"
+                style="@style/CreateWalletButtonText"/>
+
+            <ImageView
+                app:layout_constraintRight_toRightOf="@id/button_ram"
+                app:layout_constraintTop_toTopOf="@id/button_ram"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/button_ram"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/button_ram"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/divider_ram" />
+
+            <View
+                android:id="@+id/button_cpu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_ram"
+                style="@style/CreateWalletButton" />
+
+            <TextView
+                android:id="@+id/text_cpu_title"
+                style="@style/CreateWalletButtonTitle"
+                android:text="CPU"
+                app:layout_constraintBottom_toTopOf="@id/text_cpu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_cpu"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_cpu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_cpu_title"
+                app:layout_constraintBottom_toBottomOf="@id/button_cpu"
+                tools:text="36"
+                style="@style/CreateWalletButtonText"/>
+
+            <ImageView
+                app:layout_constraintRight_toRightOf="@id/button_cpu"
+                app:layout_constraintTop_toTopOf="@id/button_cpu"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/button_cpu"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/button_cpu"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/divider_cpu" />
+
+            <View
+                android:id="@+id/button_net"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_cpu"
+                style="@style/CreateWalletButton" />
+
+            <TextView
+                android:id="@+id/text_net_title"
+                style="@style/CreateWalletButtonTitle"
+                android:text="@string/net"
+                app:layout_constraintBottom_toTopOf="@id/text_net"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_net"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_net"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_net_title"
+                app:layout_constraintBottom_toBottomOf="@id/button_net"
+                tools:text="224"
+                style="@style/CreateWalletButtonText"/>
+
+            <ImageView
+                app:layout_constraintRight_toRightOf="@id/button_net"
+                app:layout_constraintTop_toTopOf="@id/button_net"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/button_net"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/button_net"
+                android:id="@+id/divider_net" />
+
+            <TextView
+                android:id="@+id/text_payment"
+                style="@style/CreateWalletSubtitle"
+                app:layout_constraintTop_toBottomOf="@id/divider_net"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="payment wallet" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/text_payment"
+                android:id="@+id/divider_payment" />
+
+            <View
+                android:id="@+id/button_wallet"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_payment"
+                style="@style/CreateWalletButton"/>
+
+            <ImageView
+                android:id="@+id/image_currency"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/button_wallet"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_wallet"
+                tools:srcCompat="@drawable/ic_eth_medium_icon" />
+
+            <TextView
+                android:id="@+id/text_wallet_name"
+                style="@style/CreateWalletButtonText"
+                android:ellipsize="end"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/text_address"
+                app:layout_constraintLeft_toRightOf="@id/image_currency"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_wallet"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Vadim" />
+
+            <TextView
+                android:id="@+id/text_address"
+                style="@style/CreateWalletButtonTitle"
+                android:layout_width="0dp"
+                android:layout_marginRight="16dp"
+                android:paddingRight="16dp"
+                android:ellipsize="end"
+                android:letterSpacing="-0.02"
+                android:maxLines="1"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/button_wallet"
+                app:layout_constraintLeft_toRightOf="@id/image_currency"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_wallet_name"
+                tools:text="3DA28WCp4Cu5LQiddJnDJJmKWvmmramzankadyrov" />
+
+            <ImageView
+                app:layout_constraintRight_toRightOf="@id/button_wallet"
+                app:layout_constraintTop_toTopOf="@id/button_wallet"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/button_wallet"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/button_wallet"
+                android:id="@+id/divider_notification" />
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/divider_notification"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:paddingTop="12dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:id="@+id/text_notification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/blue_light"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/select_payment_wallet" />
+
+            <TextView
+                android:id="@+id/button_create"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/text_notification"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/selector_background_blue"
+                android:text="@string/create_for_eth"
+                android:layout_width="0dp"
+                android:layout_height="64dp" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/notification_warning"
+                android:background="@color/red_warn"
+                tools:visibility="visible"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/button_create"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_warning"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:text="Unfortunately, you don’t have enough money on your wallet to confirm the transaction"
+                    style="@style/CreateWalletNotification" />
+
+                <TextView
+                    android:id="@+id/text_warning_address"
+                    style="@style/CreateWalletNotification"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_warning"
+                    tools:text="3DA28WCp4Cu5LQiddJnDJJmKWvmmZAKP5K" />
+
+                <TextView
+                    android:id="@+id/text_recommendation"
+                    app:layout_constraintTop_toBottomOf="@id/text_warning_address"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="8dp"
+                    style="@style/CreateWalletNotification"
+                    android:text="Top up the balance to complete your confirmation" />
+
+                <TextView
+                    android:id="@+id/button_share"
+                    style="@style/CreateWalletNotificationButton"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/button_white_left_round"
+                    android:drawableTop="@drawable/ic_operation_copy_grey"
+                    android:text="@string/share_pure"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/button_receive"
+                    app:layout_constraintTop_toBottomOf="@id/text_recommendation" />
+
+                <TextView
+                    app:layout_constraintLeft_toRightOf="@id/button_share"
+                    app:layout_constraintRight_toLeftOf="@id/button_exchange"
+                    app:layout_constraintTop_toBottomOf="@id/text_recommendation"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/selector_white"
+                    android:drawableTop="@drawable/ic_operation_receive_grey"
+                    android:text="@string/receive"
+                    android:id="@+id/button_receive"
+                    style="@style/CreateWalletNotificationButton" />
+
+                <TextView
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_recommendation"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/button_receive"
+                    style="@style/CreateWalletNotificationButton"
+                    android:drawableTop="@drawable/ic_operation_exchange_grey"
+                    android:text="@string/exchange"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/button_white_right_round"
+                    android:id="@+id/button_exchange" />
+
+                <View
+                    android:id="@+id/divider_left"
+                    app:layout_constraintTop_toTopOf="@id/button_receive"
+                    app:layout_constraintBottom_toBottomOf="@id/button_receive"
+                    app:layout_constraintLeft_toLeftOf="@id/button_receive"
+                    android:background="@color/divider_grey_lightest"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp" />
+
+                <View
+                    android:id="@+id/divider_right"
+                    app:layout_constraintTop_toTopOf="@id/button_receive"
+                    app:layout_constraintBottom_toBottomOf="@id/button_receive"
+                    app:layout_constraintRight_toRightOf="@id/button_receive"
+                    android:background="@color/divider_grey_lightest"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

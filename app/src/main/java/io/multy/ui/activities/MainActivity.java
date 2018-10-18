@@ -51,6 +51,7 @@ import io.multy.viewmodels.WalletViewModel;
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener, BaseActivity.OnLockCloseListener {
 
     public static final String IS_ANIMATION_MUST_SHOW = "isanimationmustshow";
+    public static final String IS_SERVER_UNAVAILABLE = "IS_SERVER_UNAVAILABLE";
 
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
@@ -77,6 +78,11 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             showLock();
         }
         logFirstLaunch();
+
+        if (getIntent().getBooleanExtra(IS_SERVER_UNAVAILABLE, false)) {
+            getIntent().removeExtra(IS_SERVER_UNAVAILABLE);
+            showMessage(getString(R.string.temporary_out_of_service), getString(R.string.server_stoped));
+        }
     }
 
     @Override

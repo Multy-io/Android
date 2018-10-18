@@ -389,4 +389,6 @@
     <string name="imported_wallet">Imported Wallet</string>
     <string name="about_imported">Please note that imported wallets can\'t be restored from seed phrase on other device. You should backup your private key in order to secure your funds, so you can import it later on other device.</string>
     <string name="enter_sum_too_much">You trying to enter sum more then you have</string>
+    <string name="temporary_out_of_service">Temporary out of service</string>
+    <string name="server_stoped">We are sorry, but Multy is temporary out of service. Please come back later.</string>
 </resources>

@@ -143,7 +143,7 @@ public class SplashActivity extends AppCompatActivity {
                         } else if (BuildConfig.VERSION_CODE < androidConfig.getHardVersion()) {
                             showStrongUpdateDialog();
                         } else {
-                            showMainActivity();
+                            showMainActivity(true);
                         }
 
                         if (configResponse.getDonates() != null) {
@@ -154,7 +154,7 @@ public class SplashActivity extends AppCompatActivity {
                     }
                 } else {
 //                    showError(R.string.error_config_error);
-                    showMainActivity();
+                    showMainActivity(false);
                 }
             }
 
@@ -162,7 +162,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onFailure(Call<ServerConfigResponse> call, Throwable t) {
 //                showError(R.string.error_config_error);
                 t.printStackTrace();
-                showMainActivity();
+                showMainActivity(false);
             }
         });
     }
@@ -216,14 +216,15 @@ public class SplashActivity extends AppCompatActivity {
         }).show(getSupportFragmentManager(), "");
     }
 
-    private void showMainActivity() {
+    private void showMainActivity(boolean isServerAvailable) {
         if (getLifecycle().getCurrentState() == Lifecycle.State.RESUMED) {
             Thread background = new Thread() {
                 public void run() {
                     try {
                         Intent mainActivityIntent = new Intent(SplashActivity.this, MainActivity.class)
-                                .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        mainActivityIntent.putExtra(MainActivity.IS_ANIMATION_MUST_SHOW, true);
+                                .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                                .putExtra(MainActivity.IS_ANIMATION_MUST_SHOW, true)
+                                .putExtra(MainActivity.IS_SERVER_UNAVAILABLE, !isServerAvailable);
                         addDeepLinkExtra(mainActivityIntent);
                         checkForContactAction(mainActivityIntent);
                         startActivity(mainActivityIntent);

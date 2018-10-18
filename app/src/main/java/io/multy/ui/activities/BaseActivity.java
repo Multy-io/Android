@@ -150,7 +150,12 @@ public class BaseActivity extends AppCompatActivity implements PinNumbersAdapter
     }
 
     protected void showMessage(String message) {
-        SimpleDialogFragment dialog = SimpleDialogFragment.newInstanceNegative(getString(R.string.error), message, null);
+        showMessage(null, message);
+    }
+
+    protected void showMessage(String title, String message) {
+        SimpleDialogFragment dialog = SimpleDialogFragment
+                .newInstanceNegative(title == null ? getString(R.string.error) : title, message, null);
         dialog.setTitleResId(R.string.error);
         dialog.setMessageResId(R.string.error);
         dialog.show(getSupportFragmentManager(), "");

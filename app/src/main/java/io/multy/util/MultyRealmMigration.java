@@ -13,7 +13,9 @@ import io.multy.model.entities.wallet.EthWallet;
 import io.multy.model.entities.wallet.RecentAddress;
 import io.multy.model.entities.wallet.Wallet;
 import io.multy.model.entities.wallet.WalletAddress;
+import io.multy.storage.RealmManager;
 import io.realm.DynamicRealm;
+import io.realm.DynamicRealmObject;
 import io.realm.FieldAttribute;
 import io.realm.RealmObjectSchema;
 import io.realm.RealmSchema;
@@ -101,13 +103,16 @@ public class MultyRealmMigration implements io.realm.RealmMigration {
             }
             case 7: {
                 RealmObjectSchema walletPrivateKeySchema = schema.create("WalletPrivateKey");
-                walletPrivateKeySchema.addField("id", String.class, FieldAttribute.PRIMARY_KEY);
+                walletPrivateKeySchema.addField("id", String.class);
+                walletPrivateKeySchema.addPrimaryKey("id");
                 walletPrivateKeySchema.addField("walletAddress", String.class);
                 walletPrivateKeySchema.addField("privateKey", String.class);
                 walletPrivateKeySchema.addField("currencyId", int.class);
                 walletPrivateKeySchema.addField("networkId", int.class);
-                RealmObjectSchema addressSchema = schema.get(WalletAddress.class.getSimpleName());
-                addressSchema.addField("id", String.class, FieldAttribute.PRIMARY_KEY, FieldAttribute.REQUIRED);
+                realm.where(WalletAddress.class.getSimpleName()).findAll().deleteAllFromRealm();
+                RealmObjectSchema addressSchema = schema.get("WalletAddress");
+                addressSchema.addField("id", String.class);
+                addressSchema.addPrimaryKey("id");
                 RealmObjectSchema walletSchema = schema.get(Wallet.class.getSimpleName());
                 walletSchema.addField("visible", boolean.class);
                 walletSchema.addField("brokenStatus", int.class);

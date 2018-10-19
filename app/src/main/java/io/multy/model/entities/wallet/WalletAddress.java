@@ -18,7 +18,6 @@ import io.realm.annotations.Required;
 public class WalletAddress extends RealmObject {
 
     @PrimaryKey
-    @Required
     private String id;
     @SerializedName("addressindex")
     private int index;

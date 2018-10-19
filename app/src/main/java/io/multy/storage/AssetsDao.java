@@ -287,6 +287,12 @@ public class AssetsDao {
         });
     }
 
+    public void deleteAllAddresses() {
+        realm.executeTransaction(realm -> {
+            realm.where(WalletAddress.class).findAll().deleteAllFromRealm();
+        });
+    }
+
     public Wallet getWalletById(long id) {
         return realm.where(Wallet.class).equalTo("dateOfCreation", id).findFirst();
     }

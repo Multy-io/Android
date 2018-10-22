@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_title"
@@ -26,9 +26,11 @@
         android:layout_height="56dp"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
+        android:paddingEnd="0dp"
         android:text="@string/create_or_import_new_wallet"
         android:textColor="@color/blue_light"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/button_create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,6 +50,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/button_create_multisig"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="RtlSymmetry" />
@@ -61,6 +64,7 @@
         android:gravity="center_vertical"
         android:lineSpacingExtra="8sp"
         android:paddingStart="16dp"
+        android:paddingEnd="0dp"
         android:text="@string/create_multisig"
         android:textColor="@color/black_light"
         android:textSize="16sp"
@@ -79,6 +83,7 @@
         android:gravity="center_vertical"
         android:lineSpacingExtra="8sp"
         android:paddingStart="16dp"
+        android:paddingEnd="0dp"
         android:text="@string/join_multisig"
         android:textColor="@color/black_light"
         android:textSize="16sp"
@@ -97,6 +102,7 @@
         android:gravity="center_vertical"
         android:lineSpacingExtra="8sp"
         android:paddingStart="16dp"
+        android:paddingEnd="0dp"
         android:text="@string/import_multisig"
         android:textColor="@color/black_light"
         android:textSize="16sp"
@@ -115,6 +121,7 @@
         android:gravity="center_vertical"
         android:lineSpacingExtra="8sp"
         android:paddingStart="16dp"
+        android:paddingEnd="0dp"
         android:text="@string/import_eth_wallet"
         android:textColor="@color/black_light"
         android:textSize="16sp"

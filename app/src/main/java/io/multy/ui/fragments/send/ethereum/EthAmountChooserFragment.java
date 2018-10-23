@@ -183,12 +183,17 @@ public class EthAmountChooserFragment extends BaseFragment implements BaseActivi
     }
 
     private double initSpendable() {
+        return initSpendable(false);
+    }
+
+    private double initSpendable(boolean isAmountSwapped) {
         String spendableWeiString = viewModel.getWallet().getActiveAddress().getAmountString();
         spendableWei = new BigDecimal(spendableWeiString);
         final double balanceEth = CryptoFormatUtils.weiToEth(spendableWeiString);
         double spendableEth = /*switcher.isChecked() ? (balanceEth - transactionPriceEth) : */balanceEth;
 
-        textSpendable.setText(String.format(getString(R.string.available_amount), CryptoFormatUtils.FORMAT_ETH.format(spendableEth) + " ETH"));
+        textSpendable.setText(String.format(getString(R.string.available_amount), isAmountSwapped ? CryptoFormatUtils.ethToUsd(spendableEth) + " " + CurrencyCode.USD :
+        (CryptoFormatUtils.FORMAT_ETH.format(spendableEth) + " " + CurrencyCode.ETH)));
         return spendableEth;
     }
 
@@ -437,6 +442,7 @@ public class EthAmountChooserFragment extends BaseFragment implements BaseActivi
                 buttonClearOriginal.setVisibility(View.VISIBLE);
                 buttonClearCurrency.setVisibility(View.GONE);
             }
+            initSpendable(!hasFocus);
         });
 
         inputOriginal.addTextChangedListener(textWatcherOriginal);

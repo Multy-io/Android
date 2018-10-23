@@ -16,7 +16,7 @@ android {
         applicationId "io.multy"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 21
+        versionCode 20
         versionName "1.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         

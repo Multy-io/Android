@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -64,12 +65,12 @@ public class AssetSendFragment extends BaseFragment implements RecentAddressesAd
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_asset_send, container, false);
         this.unbinder = ButterKnife.bind(this, view);
-        viewModel = ViewModelProviders.of(getActivity()).get(AssetSendViewModel.class);
+        viewModel = ViewModelProviders.of(requireActivity()).get(AssetSendViewModel.class);
         setBaseViewModel(viewModel);
-        viewModel.getReceiverAddress().observe(getActivity(), s -> {
+        viewModel.getReceiverAddress().observe(this, s -> {
             inputAddress.setText(s);
             inputAddress.setSelection(inputAddress.length());
         });

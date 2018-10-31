@@ -38,6 +38,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -46,6 +47,8 @@ import butterknife.OnClick;
 import io.multy.R;
 import io.multy.api.MultyApi;
 import io.multy.model.entities.TransactionHistory;
+import io.multy.model.entities.wallet.Erc20Balance;
+import io.multy.model.entities.wallet.Erc20Token;
 import io.multy.model.entities.wallet.Wallet;
 import io.multy.model.events.TransactionUpdateEvent;
 import io.multy.model.responses.SingleWalletResponse;
@@ -68,6 +71,7 @@ import io.multy.util.NativeDataHelper;
 import io.multy.util.analytics.Analytics;
 import io.multy.util.analytics.AnalyticsConstants;
 import io.multy.viewmodels.WalletViewModel;
+import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -208,6 +212,29 @@ public class AssetInfoFragment extends BaseFragment implements AppBarLayout.OnOf
 
             containerPending.collapse();
         }
+
+        //get and print erc20tokens
+        if (wallet.getCurrencyId() == NativeDataHelper.Blockchain.ETH.getValue() &&
+                wallet.getActiveAddress().getErc20Balance() != null && wallet.getActiveAddress().getErc20Balance().size() > 0) {
+            checkForErc20TokensBalance(wallet.getActiveAddress().getErc20Balance(), wallet.getNetworkId());
+        }
+    }
+
+    private void checkForErc20TokensBalance(RealmList<Erc20Balance> tokens, int networkId) {
+        for (Erc20Balance token : tokens) {
+            if (new BigInteger(token.getBalance()).compareTo(BigInteger.ZERO) > 0) {
+                updateErc20Views(networkId == NativeDataHelper.NetworkId.ETH_MAIN_NET.getValue() ?
+                        // if network is testnet or we do not have info about token,
+                        // we send null and print default data
+                        RealmManager.getSettingsDao().getErc20TokenInfo(token.getAddress()) : null, token.getBalance());
+            }
+        }
+    }
+
+    private void updateErc20Views(@Nullable Erc20Token erc20Token, String balance) {
+        final String tokenCoinTicker = erc20Token == null ? "default ticker" : erc20Token.getTicker();
+        final String tokenCoinName = erc20Token == null ? "default name" : erc20Token.getName();
+        //todo notify views
     }
 
     private void refreshWallet() {

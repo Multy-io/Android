@@ -18,6 +18,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -39,10 +40,12 @@ import io.multy.Multy;
 import io.multy.R;
 import io.multy.api.MultyApi;
 import io.multy.model.entities.Estimation;
+import io.multy.model.entities.MultisigFactory;
 import io.multy.model.entities.wallet.Owner;
 import io.multy.model.entities.wallet.Wallet;
 import io.multy.model.entities.wallet.WalletPrivateKey;
 import io.multy.model.requests.HdTransactionRequestEntity;
+import io.multy.model.responses.ServerConfigResponse;
 import io.multy.storage.RealmManager;
 import io.multy.ui.adapters.OwnersAdapter;
 import io.multy.ui.fragments.MultisigSettingsFragment;
@@ -307,6 +310,23 @@ public class CreateMultiSigActivity extends BaseActivity {
         }
     }
 
+    private void getServerConfig() {
+        MultyApi.INSTANCE.getServerConfig().enqueue(new Callback<ServerConfigResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ServerConfigResponse> call, @NonNull Response<ServerConfigResponse> response) {
+                ServerConfigResponse body = response.body();
+                if (body != null && body.getMultisigFactory() != null) {
+                    RealmManager.getSettingsDao().saveMultisigFactory(body.getMultisigFactory());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ServerConfigResponse> call, @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
     public void showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = new Dialog(this);
@@ -337,12 +357,19 @@ public class CreateMultiSigActivity extends BaseActivity {
                     .commit();
 
         } else {
+            Wallet linkedWallet = viewModel.getLinkedWallet().getValue();
+            MultisigFactory multisigFactory = RealmManager.getSettingsDao().getMultisigFactory();
+            if (multisigFactory == null || TextUtils.isEmpty(multisigFactory.getEthMainNet()) ||
+                    TextUtils.isEmpty(multisigFactory.getEthTestNet())) {
+                showError(new NullPointerException("Multisig factory address is empty!"));
+                getServerConfig();
+                return;
+            }
             view.setEnabled(false);
             final String priceOfCreation = (String) textAction.getTag();
             final byte[] seed = RealmManager.getSettingsDao().getSeed().getSeed();
             String factoryAddress = null;
             Wallet multisigWallet = viewModel.getMultisigWallet().getValue();
-            Wallet linkedWallet = viewModel.getLinkedWallet().getValue();
             if (linkedWallet.getCurrencyId() == NativeDataHelper.Blockchain.ETH.getValue() &&
                     linkedWallet.getNetworkId() == NativeDataHelper.NetworkId.RINKEBY.getValue()) {
                 factoryAddress = RealmManager.getSettingsDao().getMultisigFactory().getEthTestNet();

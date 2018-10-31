@@ -8,9 +8,11 @@ package io.multy.model.responses;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.multy.model.entities.MultisigFactory;
+import io.multy.model.entities.wallet.Erc20Token;
 
 public class ServerConfigResponse {
 
@@ -23,6 +25,9 @@ public class ServerConfigResponse {
     @SerializedName("multisigfactory")
     private MultisigFactory multisigFactory;
 
+    @SerializedName("erc20tokenlist")
+    private ArrayList<Erc20Token> tokens;
+
     public MultisigFactory getMultisigFactory() {
         return multisigFactory;
     }
@@ -33,6 +38,10 @@ public class ServerConfigResponse {
 
     public List<Donate> getDonates() {
         return donates;
+    }
+
+    public ArrayList<Erc20Token> getTokens() {
+        return tokens;
     }
 
     public class AndroidConfig {

@@ -17,7 +17,7 @@
         android:id="@+id/image_logo"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/ic_activity_tab" />
+        android:src="@drawable/ic_browser_icon_unactive" />
 
     <TextView
         android:id="@+id/title"

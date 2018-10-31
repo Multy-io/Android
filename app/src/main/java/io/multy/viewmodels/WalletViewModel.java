@@ -142,8 +142,9 @@ public class WalletViewModel extends BaseViewModel {
 
     public static void saveDonateAddresses() {
         ServerConfigResponse serverConfig = EventBus.getDefault().removeStickyEvent(ServerConfigResponse.class);
-        if (serverConfig != null) {
+        if (serverConfig != null && serverConfig.getMultisigFactory() != null && serverConfig.getDonates() != null) {
             RealmManager.getSettingsDao().saveDonation(serverConfig.getDonates());
+            RealmManager.getSettingsDao().saveErc20Tokens(serverConfig.getTokens());
             RealmManager.getSettingsDao().saveMultisigFactory(serverConfig.getMultisigFactory());
         }
     }

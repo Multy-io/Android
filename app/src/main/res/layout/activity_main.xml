@@ -47,7 +47,7 @@
             android:id="@+id/tab_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout="@layout/tab_feed" />
+            android:layout="@layout/tab_browser" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/empty"

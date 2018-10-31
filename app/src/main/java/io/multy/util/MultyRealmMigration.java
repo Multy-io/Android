@@ -9,6 +9,7 @@ package io.multy.util;
 import com.samwolfand.oneprefs.Prefs;
 
 import io.multy.api.socket.CurrenciesRate;
+import io.multy.model.entities.wallet.Erc20Balance;
 import io.multy.model.entities.wallet.EthWallet;
 import io.multy.model.entities.wallet.RecentAddress;
 import io.multy.model.entities.wallet.Wallet;
@@ -112,6 +113,13 @@ public class MultyRealmMigration implements io.realm.RealmMigration {
                 walletSchema.addField("visible", boolean.class);
                 walletSchema.addField("brokenStatus", int.class);
                 Prefs.putBoolean(Constants.PREF_DETECT_BROKEN, true);
+            }
+            case 8: {
+                RealmObjectSchema erc20schema = schema.create(Erc20Balance.class.getSimpleName());
+                erc20schema.addField("address", String.class, FieldAttribute.PRIMARY_KEY);
+                erc20schema.addField("balance", String.class);
+                RealmObjectSchema walletAddressSchema = schema.get(WalletAddress.class.getSimpleName());
+                walletAddressSchema.addRealmListField("erc20Balance", erc20schema);
             }
         }
     }

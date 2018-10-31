@@ -44,7 +44,6 @@ import io.multy.model.entities.UserId;
 import io.multy.model.responses.AuthResponse;
 import io.multy.model.responses.ServerConfigResponse;
 import io.multy.storage.RealmManager;
-import io.multy.storage.SettingsDao;
 import io.multy.ui.fragments.BaseSeedFragment;
 import io.multy.util.BrickView;
 import io.multy.util.Constants;
@@ -258,9 +257,8 @@ public class SeedValidationFragment extends BaseSeedFragment {
             final String userId = NativeDataHelper.makeAccountId(seed);
             MultyApi.INSTANCE.auth(userId).enqueue(new Callback<AuthResponse>() {
                 @Override
-                public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
                     if (response.isSuccessful()) {
-
                         final boolean initialized = Multy.makeInitialized();
                         if (!initialized) {
                             onSeedRestoreFailure(callback);
@@ -268,15 +266,15 @@ public class SeedValidationFragment extends BaseSeedFragment {
                         }
                         Realm.deleteRealm(Realm.getDefaultConfiguration());
                         RealmManager.open();
-                        SettingsDao settingsDao = RealmManager.getSettingsDao();
-                        settingsDao.setUserId(new UserId(userId));
-                        settingsDao.setByteSeed(new ByteSeed(seed));
-                        settingsDao.setMnemonic(new Mnemonic(phrase));
+                        RealmManager.getSettingsDao().setUserId(new UserId(userId));
+                        RealmManager.getSettingsDao().setByteSeed(new ByteSeed(seed));
+                        RealmManager.getSettingsDao().setMnemonic(new Mnemonic(phrase));
                         ServerConfigResponse serverConfig = EventBus.getDefault().removeStickyEvent(ServerConfigResponse.class);
                         if (serverConfig != null) {
-                            settingsDao.saveDonation(serverConfig.getDonates());
+                            RealmManager.getSettingsDao().saveDonation(serverConfig.getDonates());
+                            RealmManager.getSettingsDao().saveMultisigFactory(serverConfig.getMultisigFactory());
+                            RealmManager.getSettingsDao().saveErc20Tokens(serverConfig.getTokens());
                         }
-                        settingsDao.saveMultisigFactory(serverConfig.getMultisigFactory());
                         RealmManager.close();
 
                         Prefs.putString(Constants.PREF_AUTH, response.body().getToken());
@@ -290,7 +288,7 @@ public class SeedValidationFragment extends BaseSeedFragment {
                 }
 
                 @Override
-                public void onFailure(Call<AuthResponse> call, Throwable t) {
+                public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
                     onSeedRestoreFailure(callback);
                 }
             });

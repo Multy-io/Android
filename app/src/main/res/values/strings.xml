@@ -221,7 +221,7 @@
     <string name="select_an_addresses">SELECT AN ADDRESS TO VIEW PRIVATE KEY</string>
     <string name="select_wallet_donation">Select wallet and donation summ</string>
     <string name="wallet">Wallet</string>
-    <string name="activity">Activity</string>
+    <string name="activity">Browser</string>
     <string name="donation">Donation</string>
     <!--<string name="select_speed">Select speed</string>-->
     <string name="send_donation">Send</string>

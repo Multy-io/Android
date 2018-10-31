@@ -30,6 +30,8 @@ public class WalletAddress extends RealmObject {
     private RealmList<Output> outputs;
     @SerializedName("lastactiontime")
     private long date;
+    @SerializedName("erc20balances")
+    private RealmList<Erc20Balance> erc20Balance;
 
     public WalletAddress() {
     }
@@ -80,5 +82,13 @@ public class WalletAddress extends RealmObject {
     }
 
     public static String getAddressId(String address, int currencyId, int networkId) {return address + String.valueOf(currencyId) + String.valueOf(networkId);
+    }
+
+    public RealmList<Erc20Balance> getErc20Balance() {
+        return erc20Balance;
+    }
+
+    public void setErc20Balance(RealmList<Erc20Balance> erc20Balance) {
+        this.erc20Balance = erc20Balance;
     }
 }

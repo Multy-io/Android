@@ -8,6 +8,7 @@ package io.multy.storage;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.multy.api.socket.CurrenciesRate;
@@ -21,6 +22,7 @@ import io.multy.model.entities.MultisigFactory;
 import io.multy.model.entities.RootKey;
 import io.multy.model.entities.Token;
 import io.multy.model.entities.UserId;
+import io.multy.model.entities.wallet.Erc20Token;
 import io.multy.model.responses.ServerConfigResponse;
 import io.multy.util.NativeDataHelper;
 import io.reactivex.annotations.NonNull;
@@ -159,6 +161,18 @@ public class SettingsDao {
     public DonateFeatureEntity getDonationFeature(String address) {
         return realm.where(DonateFeatureEntity.class)
                 .equalTo(DonateFeatureEntity.DONATION_ADDRESS, address).findFirst();
+    }
+
+    public void saveErc20Tokens(ArrayList<Erc20Token> tokens) {
+        realm.executeTransactionAsync(realm -> {
+            realm.where(Erc20Token.class).findAll().deleteAllFromRealm();
+            realm.insertOrUpdate(tokens);
+        });
+    }
+
+    @Nullable
+    public Erc20Token getErc20TokenInfo(String contractAddress) {
+        return realm.where(Erc20Token.class).equalTo("contractAddress", contractAddress).findFirst();
     }
 
     public void saveContact(Contact contact) {
